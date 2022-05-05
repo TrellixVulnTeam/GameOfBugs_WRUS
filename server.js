@@ -17,6 +17,8 @@ db.run('DELETE FROM players');
 //db.run('CREATE TABLE players(id, name, score)');
 //db.run('CREATE TABLE users(first_name, last_name, username, password, email, id)');
 
+
+
 app.use(express.static('public'));
 
 app.get('/', function(req, res){
@@ -37,9 +39,8 @@ var playersocket;
   io.on('connection', (socket) => {
     playersocket = socket.id;
     socket.on('chatter', (msg) => { 
-      io.emit('chatter' ,{ msg: msg , name : players[socket.id].name});
+      io.emit('chatter' ,{ msg: msg , name : players[socket.id].name});  
     });
-
 
     socket.on('startGame', () => {
       if(currentClients < 2){
@@ -56,7 +57,7 @@ var playersocket;
         io.emit('admin', "@Admin : " +data.name+ " has joined!");
        
         console.log(data.name);
-
+        
         currentClients = io.engine.clientsCount;
         console.log("number of clients : ", currentClients);
 
@@ -122,8 +123,6 @@ var playersocket;
          console.log("lent " +   playersBottom.length);
          console.log("fent" + playersTop.length);
     });
-
-
 
     socket.on('movement', function(data) {
       var player = players[socket.id] || {};
@@ -219,7 +218,7 @@ var playersocket;
           count++;
           console.log(count);
 
-          //delete players[j];
+          delete players[j];
         }
        }
 
@@ -235,6 +234,7 @@ var playersocket;
           io.emit('admin',"@Admin "+  players[j].name + "was hit");
           count++;
           console.log(count);
+
           //delete players[j];
         }
        }
