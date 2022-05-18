@@ -18,8 +18,6 @@ const db = new sqlite3.Database('./mock.db', sqlite3.OPEN_READWRITE, (err) => {
 });
 db.run('DELETE FROM players');
 
-//db.run('CREATE TABLE players(id, name, score)');
-
 app.use(express.static('public'));
 
 app.get('/', function (req, res) {
@@ -37,9 +35,17 @@ var players = {};
 var bullet_array = [];
 var num = 0;
 var score = 0;
-const shoot_speed = 5;
+var shoot_speed = 0;
 
+const fs = require('fs');
 
+fs.readFile('config.cfg', 'utf8', (err, data) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  shoot_speed = data[14];
+});
 
 
 io.on('connection', (socket) => {
