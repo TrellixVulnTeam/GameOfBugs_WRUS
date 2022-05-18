@@ -1,21 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="utf-8">
-    <title>Admin page</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css">
+    <script src="/socket.io/socket.io.js"></script>
+
 </head>
 
-<body>
+<body">
 
-    <div class="container">
-        <p>Test</p>
+    <h1> ADMIN PLS</h1>
+
+    <button id="restart" onclick="restartGame()">Start</button>
+
+    <table id="scoreboard">
+        <tr>
+            <td>Name</td>
+            <td>Score</td>
+        </tr>
+
+    </table>
+
+    <script src="admin.js"></script>
     </div>
-
-    <script>
-    </script>
-
-</body>
-
-</html>

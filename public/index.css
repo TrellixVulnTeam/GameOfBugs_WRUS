@@ -34,3 +34,10 @@ p{
     
     margin: auto;
 }
+
+
+#score_board {
+    width: auto;
+    
+    float: left;
+}
